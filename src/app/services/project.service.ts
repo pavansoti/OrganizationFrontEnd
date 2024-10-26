@@ -33,6 +33,12 @@ export class ProjectService {
     return this._http.put(`${this._baseUrl}update-project`,project)
   }
 
+  //add-emp-to-pro-comp
+  addEmployeeToProject(selectedEmployeeIds,projectId):Observable<any>{
+    return this._http.post(`${this._baseUrl}add-emp-to-project/${projectId}`,selectedEmployeeIds,{responseType:'text'})
+  }
+
+
 }
 
 

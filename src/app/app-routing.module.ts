@@ -20,6 +20,7 @@ import { ViewProjectEmployeesComponent } from './components/view-project-employe
 import { UpdateProjectComponent } from './components/update-project/update-project.component';
 import { UpdateEmployeeComponent } from './components/update-employee/update-employee.component';
 import { UserNotFoundComponent } from './components/user-not-found/user-not-found.component';
+import { AddEmployeeToProjectComponent } from './components/add-employee-to-project/add-employee-to-project.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'login',pathMatch:'full'},
@@ -39,6 +40,7 @@ const routes: Routes = [
       { path: 'project/all-projects', component: AllProjectsComponent},
       { path: 'project/all-projects/view-details/:projectId', component: ViewProjectEmployeesComponent,},
       { path: 'project/all-projects/update-project/:projectId', component: UpdateProjectComponent,},
+      { path: 'project/all-projects/view-details/:projectId/add-employee-project',component:AddEmployeeToProjectComponent},
       { path: 'setting', component: OrganizationSettingsComponent,  },
       { path: 'event', component: OrganizationEventsComponent, },
     ]

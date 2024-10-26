@@ -20,13 +20,14 @@ export class AllEmployeesComponent {
   ngOnInit(){
     let orgUsername=localStorage.getItem('token')
     this._employeeFilterService.roleFilter.subscribe(role=>{
-      if(role=='all'){
-        this._employeeService.getEmpByOrg(orgUsername).subscribe(res=>{
+      if(role=='developer'||role=='tester'){
+        this._employeeService.getEmpByOrgUsernameAndEmpRole(orgUsername,role).subscribe(res=>{
           this.employees=res;
+       
         })
       }
       else{
-        this._employeeService.getEmpByOrgUsernameAndEmpRole(orgUsername,role).subscribe(res=>{
+        this._employeeService.getEmpByOrg(orgUsername).subscribe(res=>{
           this.employees=res;
         })
       }

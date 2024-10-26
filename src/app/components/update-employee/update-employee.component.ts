@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DialogService } from 'src/app/services/dialog.service';
 import { EmployeeService } from 'src/app/services/employee.service';
@@ -32,9 +32,16 @@ export class UpdateEmployeeComponent {
     this._route.paramMap.subscribe(param=>{
       this.empId=param.get('employeeId')
       this._employeeService.getEmpByEmpId(this.empId).subscribe(res=>{
-
+        this.employeeForm.patchValue({
+          empFullname:[res.empFullname],
+          empRole:res.empRole,
+          empContact:res.empContact,
+          empUsername:res.empUsername,
+          empPassword:res.empPassword,
+        })
       })
     })
+    this.employeeForm.get('empUsername')?.disable();
   }
 
   updateEmployee() {

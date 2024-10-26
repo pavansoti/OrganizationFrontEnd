@@ -12,6 +12,7 @@ export class ViewProjectEmployeesComponent {
   orgUsername:string;
   project
   projectId
+  employees
   constructor(private _route:ActivatedRoute,private _router:Router,
     private _projectService:ProjectService
   ){}
@@ -23,6 +24,7 @@ export class ViewProjectEmployeesComponent {
       this.projectId=params.get('projectId')
       this._projectService.getProjectById(this.projectId).subscribe(res=>{
         this.project=res
+        this.employees=res.employees
       })
     })
     

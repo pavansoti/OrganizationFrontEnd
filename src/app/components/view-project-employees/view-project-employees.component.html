@@ -5,7 +5,7 @@
     
     <h3 style=" text-align: center;">{{project?.projectName}}</h3>
     
-    <button class="plus-btn btn btn-primary" type="button" >
+    <button class="plus-btn btn btn-primary" type="button" routerLink="/org/{{orgUsername}}/project/all-projects/view-details/{{projectId}}/add-employee-project" >
         <i class="fa-solid fa-plus"></i>
     </button>
 </div>
@@ -31,31 +31,26 @@
     <table class="table table-striped">
         <thead>
             <tr>
+              <th scope="col">Sno</th>
               <th scope="col">Fullname</th>
               <th scope="col">Contact</th>
               <th scope="col">Role</th>
-              <th colspan="2" style="text-align: center;">Action</th>
+              <th style="text-align: center;">Action</th>
             </tr>
           </thead>
           <tbody>
-            <!-- <tr *ngFor="let emp of employees;let i = index">
+            <tr *ngFor="let emp of employees;let i = index">
               <th scope="row">{{i+1}}</th>
               <td>{{emp.empFullname}}</td>
-              <td>{{emp.empUsername}}</td>
-              <td>{{emp.empPassword}}</td>
               <td>{{emp.empContact}}</td>
               <td>{{emp.empRole}}</td>
-              <td>{{emp.empDoj}}</td>
-              <td>{{emp.empStatus|status}}</td>
               <td style="text-align:center">
-                <a  class="btn btn-outline-success" style="font-size:20px" routerLink="update-emp/{{emp.empId}}"><i class="fa-solid fa-pen-to-square" ></i></a>
-              </td>
-              <td style="text-align:center">
-                <a  class="btn btn-outline-danger" style="font-size:20px" (click)="deleteEmployee(emp.empId)"><i class="fa-solid fa-trash"></i></a>
+                <a  class="btn btn-outline-danger" style="font-size:20px" (click)="removeEmployee(emp.empId)"><i class="fa-solid fa-trash"></i></a>
             </td>
-            </tr> -->
+            </tr>
           </tbody>
     </table>
+</div>
 
 
 

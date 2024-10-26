@@ -25,12 +25,12 @@ export class EmployeeService {
 
   //all-emp-comp
   getEmpByOrgUsernameAndEmpRole(username:string,role:string):Observable<any>{
-    return this._http.get(`${this._baseUrl}get-emps/${username}/${role}`)
+    return this._http.get(`${this._baseUrl}viewByRole/${role}/${username}`)
   }
 
   //update-emp-comp
   getEmpByEmpId(empId):Observable<any>{
-    return this._http.get(`${this._baseUrl}get-emp/${empId}`)
+    return this._http.get(`${this._baseUrl}getempById/${empId}`)
   }
 
   //update-emp-comp
@@ -41,6 +41,11 @@ export class EmployeeService {
   //all-emp-comp
   deleteEmployee(empId):Observable<any>{
     return this._http.delete(`${this._baseUrl}delete/${empId}`,{responseType:'text'})
+  }
+
+  //add-emp-to-pro-comp
+  getBenchEmps(orgUsername,projectId):Observable<any>{
+    return this._http.get(`${this._baseUrl}get-bench-emps/${orgUsername}/${projectId}`)
   }
 
 }

@@ -1,1 +1,35 @@
-<h1>akjsjndjkan</h1>
+
+<button class="arr-btn btn btn-primary" type="button" routerLink="/org/{{orgUsername}}/project/all-projects/view-details/{{projectId}}" >
+    <i class="fa-solid fa-arrow-left" ></i>
+</button>
+<hr>
+<h5 style="text-align: center;">Employees not in this project</h5>
+<div style="margin: 0 50px;">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Sno</th>
+              <th scope="col">Fullname</th>
+              <th scope="col">Contact</th>
+              <th scope="col">Role</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let emp of benchEmps;let i = index">
+              <th scope="row">{{i+1}}</th>
+              <td>{{emp.empFullname}}</td>
+              <td>{{emp.empContact}}</td>
+              <td>{{emp.empRole}}</td>
+              <td style="text-align:center">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="flexCheckDefault" [value]="emp.empId" (change)="onCheckboxChange($event, emp.empId)">
+                </div>
+              </td>
+            </tr>
+          </tbody>
+    </table>
+    <div style="text-align: center; margin-top: 20px;">
+        <button type="button" class="btn btn-primary" (click)="addEmployeeToProject()" [disabled]="selectedEmployeeIds.length==0">Apply</button>
+    </div>
+</div>
