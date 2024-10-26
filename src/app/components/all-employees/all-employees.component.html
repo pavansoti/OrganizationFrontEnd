@@ -1,0 +1,38 @@
+    <!-- list of emp -->
+    <div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">Fullname</th>
+                  <th scope="col">Username</th>
+                  <th scope="col">Password</th>
+                  <th scope="col">Contact</th>
+                  <th scope="col">Role</th>
+                  <th scope="col">DOJ</th>
+                  <th scope="col">Status</th>
+                  
+                  <th colspan="2" style="text-align: center;">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let emp of employees;let i = index">
+                  <th scope="row">{{i+1}}</th>
+                  <td>{{emp.empFullname}}</td>
+                  <td>{{emp.empUsername}}</td>
+                  <td>{{emp.empPassword}}</td>
+                  <td>{{emp.empContact}}</td>
+                  <td>{{emp.empRole}}</td>
+                  <td>{{emp.empDoj}}</td>
+                  <td>{{emp.empStatus|status}}</td>
+                  <td style="text-align:center">
+                    <a  class="btn btn-outline-success" style="font-size:20px" routerLink="update-emp/{{emp.empId}}"><i class="fa-solid fa-pen-to-square" ></i></a>
+                  </td>
+                  <td style="text-align:center">
+                    <a  class="btn btn-outline-danger" style="font-size:20px" (click)="deleteEmployee(emp.empId)"><i class="fa-solid fa-trash"></i></a>
+                </td>
+                </tr>
+        </table>
+    </div>
+
+  

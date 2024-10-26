@@ -1,0 +1,61 @@
+<div style="display: flex; align-items: center; justify-content: space-between;">
+    <button class="arr-btn btn btn-primary" type="button" routerLink="/org/{{orgUsername}}/project/all-projects" >
+        <i class="fa-solid fa-arrow-left" ></i>
+    </button>
+    
+    <h3 style=" text-align: center;">{{project?.projectName}}</h3>
+    
+    <button class="plus-btn btn btn-primary" type="button" >
+        <i class="fa-solid fa-plus"></i>
+    </button>
+</div>
+
+<hr>
+
+<div style="margin: 0 50px;">
+    <div class="col row" style="text-align: center;">
+        <div class="col-6">
+            <div><strong>Project id : </strong>{{project?.projectId}}</div>
+            <div><strong>Status : </strong>{{project?.projectStatus}}</div>
+        </div>
+        <div class="col-6">
+            <div><strong>Start date : </strong>{{project?.projectStartDate}}</div>
+            <div><strong>End date : </strong>{{project?.projectEndDate}}</div>
+        </div>
+    </div>
+    <p><strong>Description : </strong>{{project?.projectDescription}}</p>
+</div>
+
+<h5 style="text-align: center;">Employees in this project</h5>
+<div style="margin: 0 50px;">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+              <th scope="col">Fullname</th>
+              <th scope="col">Contact</th>
+              <th scope="col">Role</th>
+              <th colspan="2" style="text-align: center;">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- <tr *ngFor="let emp of employees;let i = index">
+              <th scope="row">{{i+1}}</th>
+              <td>{{emp.empFullname}}</td>
+              <td>{{emp.empUsername}}</td>
+              <td>{{emp.empPassword}}</td>
+              <td>{{emp.empContact}}</td>
+              <td>{{emp.empRole}}</td>
+              <td>{{emp.empDoj}}</td>
+              <td>{{emp.empStatus|status}}</td>
+              <td style="text-align:center">
+                <a  class="btn btn-outline-success" style="font-size:20px" routerLink="update-emp/{{emp.empId}}"><i class="fa-solid fa-pen-to-square" ></i></a>
+              </td>
+              <td style="text-align:center">
+                <a  class="btn btn-outline-danger" style="font-size:20px" (click)="deleteEmployee(emp.empId)"><i class="fa-solid fa-trash"></i></a>
+            </td>
+            </tr> -->
+          </tbody>
+    </table>
+
+
+

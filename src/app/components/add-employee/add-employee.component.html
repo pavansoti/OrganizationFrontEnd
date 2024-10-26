@@ -1,0 +1,44 @@
+<!-- adding employee -->
+<div class="containerBody" style="padding-top:2cm; background-image: url('assets/images/img2.jpg');">
+    <div class="container">
+      <div class="bg">
+          <h3 routerLink="/login">Add employee</h3>
+          <hr>
+          <form class="col row form-group" [formGroup]="employeeForm" (ngSubmit)="add()">
+              <div class="col-6">
+                  <div class="mb-3">
+                      <label for="empFullname" class="form-label">Employee Fullname</label>
+                      <input type="text" class="form-control" id="empFullname" formControlName="empFullname" placeholder="Enter employee fullname" >
+                  </div>
+                  <div class="mb-3">
+                      <label for="empRole" class="form-label">Employee Role</label>
+                      <input type="text" class="form-control" id="empRole" formControlName="empRole" placeholder="Enter employee role">
+                  </div>
+                  <div class="mb-3">
+                      <label for="empContact" class="form-label">Employee contact</label>
+                      <input type="text" class="form-control" id="empContact" formControlName="empContact"   placeholder="Enter employee contact" >
+                  </div>
+              </div>
+              <div class="col-6">
+                  <div class="mb-3">
+                    <label for="empUsername" class="form-label">Employee username</label>
+                    <input type="text" class="form-control" id="empUsername" formControlName="empUsername"   placeholder="Set employee username" >
+                </div>
+                  <div class="mb-3">
+                      <label for="empPassword" class="form-label">Employee password</label>
+                      <input type="password" class="form-control" id="empPassword" formControlName="empPassword" placeholder="Set password">
+                  </div>
+                  <div class="mb-3">
+                      <label for="empDoj" class="form-label">Employee Date of Joining</label>
+                      <input type="date" class="form-control" id="empDoj" formControlName="empDoj">
+                  </div>
+                </div>
+                  <div class="mb-3" style="text-align: center;">
+                      <input type="submit" class="btn btn-primary" value="Submit" style="padding:7px 50px;">
+                  </div>
+              
+          </form>
+      </div>
+    </div>
+  </div>
+

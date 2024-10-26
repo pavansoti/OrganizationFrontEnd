@@ -1,0 +1,41 @@
+
+<!-- adding project -->
+<div class="containerBody" style="background-image: url('assets/images/img2.jpg');">
+    
+<button class="my-button btn btn-primary" type="button" routerLink="/org/{{orgUsername}}/project/all-projects"><i class="fa-solid fa-arrow-left" style="padding-left:10px ;padding-right:10px"></i></button>
+
+    <div class="container">
+      <div class="bg">
+          <h3>Update project</h3>
+          <hr>
+          <form class="col row form-group" [formGroup]="projectForm" (ngSubmit)="updateProject()">
+              <div class="col-6">
+                <div class="mb-3">
+                    <label for="projectName" class="form-label">Project name</label>
+                    <input type="text" class="form-control" id="projectName" formControlName="projectName" placeholder="Enter project name" >
+                </div>
+                
+                <div class="mb-3">
+                    <label for="projectStartDate" class="form-label">Project start date</label>
+                    <input type="date" class="form-control" id="projectStartDate" formControlName="projectStartDate">
+                </div>
+                <div class="mb-3">
+                  <label for="projectEndDate" class="form-label">Project end date</label>
+                  <input type="date" class="form-control" id="projectEndDate" formControlName="projectEndDate">
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="mb-3">
+                    <label for="projectDescription" class="form-label">Project description</label>
+                    <textarea class="form-control" id="projectDescription" formControlName="projectDescription" rows="8" style="resize: none;" placeholder="Enter project description"></textarea>
+                </div>
+               </div>
+                <div class="mb-3" style="text-align: center;">
+                    <input type="submit" class="btn btn-primary" value="Submit" style="padding:7px 50px;">
+                </div>
+          </form>
+      </div>
+    </div>
+  </div>
+
+

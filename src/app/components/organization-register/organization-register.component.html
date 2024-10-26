@@ -1,0 +1,39 @@
+<div class="containerBody" style="background-image: url('assets/images/img2.jpg');">
+<h1 id="heading">Welcome to our Project</h1>
+<div class="container">
+    <div class="bg">
+        <h3 routerLink="/login">Register</h3>
+        <hr>
+        <form class="form-group" [formGroup]="registrationForm" (ngSubmit)="register()">
+            <div>
+                <div class="mb-3">
+                    <label for="orgName" class="form-label">Organization name</label>
+                    <input type="text" class="form-control" id="orgName" formControlName="orgName" placeholder="Enter organization name" >
+                </div>
+                <div class="mb-3">
+                    <label for="orgContact" class="form-label">Organization contact</label>
+                    <input type="tel" class="form-control" id="orgContact" formControlName="orgContact" placeholder="Enter organization contact">
+                </div>
+                <div class="mb-3">
+                    <label for="orgUsername" class="form-label">Organization username</label>
+                    <input type="text" class="form-control" id="orgUsername" formControlName="orgUsername"   placeholder="Set organization username" >
+                </div>
+                <div class="mb-3">
+                    <label for="orgPassword" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="orgPassword" formControlName="orgPassword" placeholder="Set password">
+                </div>
+                <div class="mb-3">
+                    <label for="orgImage" class="form-label">Organization image</label>
+                    <input type="file" class="form-control" id="orgImage"  (change)="onChange($event)">
+                </div>
+                <div class="mb-3" style="text-align: center;">
+                    <input type="submit" class="btn btn-primary" value="Submit" style="padding:7px 50px;">
+                </div>
+                <div class="mb-3">
+                    <a routerLink="/login"><span style="text-align:right;">login</span></a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</div>

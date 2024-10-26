@@ -1,0 +1,29 @@
+<div class="containerBody" style="background-image: url('assets/images/img2.jpg');">
+    
+        <h1 id="heading">Welcome to our Project</h1>
+        <div class="container" >
+            <div class="bg ">
+                <h3 routerLink="/login">Login</h3>
+                <hr>
+                <form #loginForm="ngForm" (ngSubmit)="login(loginForm)" >
+                    <div>
+                        <div class="mb-3">
+                            <label for="orgUsername" class="form-label">Organization username</label>
+                            <input type="text" class="form-control" id="orgUsername" name="orgUsername" [(ngModel)]="org.orgUsername" placeholder="Enter organization username" >
+                        </div>
+                        <div class="mb-3">
+                            <label for="orgPassword" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="orgPassword" name="orgPassword"  [(ngModel)]="org.orgPassword" placeholder="Enter password">
+                        </div>
+                        <div class="mb-3" style="text-align: center;">
+                            <input type="submit" class="btn btn-primary" value="Login"  style="padding:7px 50px;">
+                        </div>
+                        <div class="mb-3  d-flex justify-content-between">
+                            <a routerLink="/forget">forget password?</a>
+                            <a routerLink="/register"><span style="text-align:right;">register</span></a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+</div>

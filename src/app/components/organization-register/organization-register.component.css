@@ -1,0 +1,55 @@
+div.bg{
+    justify-content: center;
+    border-radius: 20px;
+    padding: 20px;
+    background-color: rgb(248, 240, 240,0.85);
+    max-width: 400px; /* Set a maximum width */
+    min-width: 400px;/* Prevent it from shrinking too much */
+
+}
+
+.container {
+    display: flex;
+    justify-content: center; /* Center horizontally */ 
+}
+
+h3{
+    color: white;
+    text-align: center;
+    /* Gradient for the text */
+    background: linear-gradient(90deg, #510cd0, #1ce3f9);
+    background-clip: text;
+    -webkit-background-clip: text; 
+    color: transparent;
+}
+
+html,body {
+    height: 100%;
+    margin:0
+}
+.containerBody{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 775px;
+}
+
+a {
+    text-decoration: none;
+    color: #394ad0;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+h1#heading{
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 30px;
+    /* Gradient for the text */
+    background: linear-gradient(90deg, #e4f643, #ffa200);
+    background-clip: text;
+    -webkit-background-clip: text; 
+    color: transparent;
+}

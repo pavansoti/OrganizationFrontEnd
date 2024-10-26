@@ -1,0 +1,73 @@
+
+<!-- dashboard nav -->
+<nav class="navbar bg-body-tertiary my-nav-bg fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" (click)="selectFeature('home')" [routerLink]="'/org/'+org?.orgUsername">
+      <img [src]="img" alt=" " width="50px" height="40px" style="margin-left: 20px; margin-right: 20px;">
+      <span class="wel-css">Welcome {{org?.orgName | uppercase}}</span>
+    </a>
+    <div>
+    </div>
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="offcanvas offcanvas-end my-nav-bg my-margin1" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+      <div class="offcanvas-header">
+        <h3 class="offcanvas-title user " id="offcanvasNavbarLabel" >{{org?.orgUsername}}</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body d-flex flex-column">
+        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+          <li class="nav-item">
+            <hr style="margin: 0px;margin-bottom: 10px;height: 10px;">
+            <a class="myadjust my-hover nav-link active" aria-current="page" (click)="selectFeature('home')" routerLink='home'>Home</a>
+            <a class="myadjust my-hover nav-link active" aria-current="page" (click)="selectFeature('employee')" routerLink="employee">Employee</a>
+            <a class="myadjust my-hover nav-link active" aria-current="page" (click)="selectFeature('project')" routerLink="project">Projects</a>
+            <a class="myadjust my-hover nav-link active " aria-current="page" (click)="selectFeature('setting')" routerLink="setting" >Settings</a>
+            <a class="myadjust my-hover nav-link active " aria-current="page" (click)="selectFeature('event')" routerLink="event" >Events</a>
+          </li>
+          <li class="nav-item mt-auto">
+            <a class="myadjust nav-link active logout-hover" aria-current="page" (click)="logout()">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- employee nav -->
+<nav class="nav my-margin" *ngIf="feature=='employee'">
+  <a class="child-nav nav-link"  routerLink="employee/add-employee">Add employee</a>
+  <a class="child-nav nav-link"  routerLink="employee/all-employees">All employees</a>
+  <a class="child-nav nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Filter
+  </a>
+  <ul class="dropdown-menu dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
+    <li class="child-nav dropdown-item" (click)="onEmployeeFilter('developer')">Developer</li>
+    <li class="child-nav dropdown-item" (click)="onEmployeeFilter('tester')" >Tester</li>
+
+  </ul>
+  <form class="my-search d-flex ms-auto" role="search">
+    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success" type="submit">Search</button>
+  </form>
+</nav>
+
+<!-- project nav -->
+<nav class="nav my-margin" *ngIf="feature=='project'">
+    <a class="child-nav nav-link" routerLink="project/add-project">Add Project</a>
+    <a class="child-nav nav-link" routerLink="project/all-projects">All projects</a>
+    <a class="child-nav nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Filter
+    </a>
+    <ul class="dropdown-menu dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
+      <li class="child-nav dropdown-item">Pending</li>
+      <li class="child-nav dropdown-item">Completed</li>
+    </ul>
+    <form class="my-search d-flex ms-auto" role="search">
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+  </nav>
+<hr>
+<router-outlet></router-outlet>

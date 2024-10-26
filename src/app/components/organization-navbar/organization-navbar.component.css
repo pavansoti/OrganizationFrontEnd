@@ -1,0 +1,56 @@
+.my-nav-bg{
+    background: linear-gradient(120deg, #5351c4, #53a3f4);
+}
+.my-hover:hover{
+    color:white;
+    background: linear-gradient(120deg, #13136d, #6682e7);
+}
+
+.logout-hover:hover{
+    color:white;
+    background: linear-gradient(120deg, #fb3333, #53a3f4);
+}
+
+.myadjust{
+    font-size: large;
+    margin-left: 0px;
+    padding-left: 10px;
+}
+
+.my-margin{
+    margin-top:75px;
+    margin-right: 30px;
+    margin-left:10px
+}
+
+.my-margin1{
+    margin-top:68px;
+}
+a.child-nav {
+    text-decoration: none;
+    color: #394ad0;
+}
+
+a.child-nav:hover {
+    text-decoration: underline;
+}
+
+li.child-nav:hover {
+    color: white;
+    background: linear-gradient(90deg, #510cd0, #1ce3f9);
+}
+
+.wel-css{ 
+    font-weight: bold; font-size: larger;
+    background: linear-gradient(90deg, #d0f667, #fab30d);background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.user{
+    margin-bottom: 0;
+    font-weight: bold;
+    background: linear-gradient(90deg, #d0f667, #fab30d);background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
