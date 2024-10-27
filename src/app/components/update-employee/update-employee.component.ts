@@ -33,7 +33,7 @@ export class UpdateEmployeeComponent {
       this.empId=param.get('employeeId')
       this._employeeService.getEmpByEmpId(this.empId).subscribe(res=>{
         this.employeeForm.patchValue({
-          empFullname:[res.empFullname],
+          empFullname:res.empFullname,
           empRole:res.empRole,
           empContact:res.empContact,
           empUsername:res.empUsername,
@@ -45,18 +45,22 @@ export class UpdateEmployeeComponent {
   }
 
   updateEmployee() {
-
+    let username=localStorage.getItem('token')
     let allData={
+      empUsername:this.employeeForm.get('empUsername')?.value,
       empFullname:this.employeeForm.value.empFullname,
       empRole:this.employeeForm.value.empRole,
       empContact:this.employeeForm.value.empContact,
       empPassword:this.employeeForm.value.empPassword,
     }
-      this._employeeService.updateEmployee(allData,this.empId).subscribe(res1=>{
-        this._dialogService.showSuccess('Success','Employee registered with id : ')
-        this._router.navigateByUrl(`org/${localStorage.get('token')}/employee/all-employees`)
-      },err=>{
-        this._dialogService.showFailed('Failed','Username or contact already exists')
+    
+      this._employeeService.updateEmployee(allData,this.empId).subscribe(res=>{
+        if(res){
+        this._dialogService.showSuccess('Success','updated successfully')
+        this._router.navigateByUrl(`org/${username}/employee/all-employees`)
+        }else{
+          this._dialogService.showFailed('Failed','Try again!!!')
+        }
       })
     }
 }

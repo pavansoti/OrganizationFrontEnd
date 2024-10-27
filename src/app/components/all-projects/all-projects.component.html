@@ -1,6 +1,6 @@
 
-
-      <div style="display: flex;flex-wrap: wrap; justify-content: space-around;">
+<div>
+      <div style="display: flex;flex-wrap: wrap; justify-content: space-around;margin:20px 30px">
           <div class="card" style="margin: 10px;width: 18rem;" *ngFor="let project of projects">
               <div class="card-body">
                 <h5 class="card-title">{{project.projectName}}</h5>
@@ -13,5 +13,5 @@
                 <a routerLink="view-details/{{project.projectId}}" class="card-link">View more</a>
               </div>
             </div>
-           
       </div>
+</div>

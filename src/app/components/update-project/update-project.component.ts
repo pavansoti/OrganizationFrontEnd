@@ -45,18 +45,19 @@ export class UpdateProjectComponent {
 
   updateProject() {
     let updateProject={
-      "projectName":this.projectForm.value.projectName,
-      "projectStartDate":this.projectForm.value.projectStartDate,
-      "projectEndDate":this.projectForm.value.projectEndDate,
-      "projectDescription":this.projectForm.value.projectDescription,
+      "projectName":this.projectForm.get('projectName').value,
+      "projectStartDate":this.projectForm.get('projectStartDate').value,
+      "projectEndDate":this.projectForm.get('projectEndDate').value,
+      "projectDescription":this.projectForm.get('projectDescription').value,
       "projectId":this.projectId
     }
     this._projectService.updateProject(updateProject).subscribe(res=>{
       if(res){
         this._dialogService.showSuccess('Success','Project updated successfully')
         this._router.navigateByUrl(`/org/${this.orgUsername}/project/all-projects`)
+      }else{
+        this._dialogService.showFailed('Error','Failed to update!!!')
       }
     })
-    this._dialogService.showSuccess('title','msg')
   }
 }

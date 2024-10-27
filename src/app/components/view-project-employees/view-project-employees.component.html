@@ -1,14 +1,15 @@
-<div style="display: flex; align-items: center; justify-content: space-between;">
-    <button class="arr-btn btn btn-primary" type="button" routerLink="/org/{{orgUsername}}/project/all-projects" >
-        <i class="fa-solid fa-arrow-left" ></i>
-    </button>
-    
-    <h3 style=" text-align: center;">{{project?.projectName}}</h3>
-    
-    <button class="plus-btn btn btn-primary" type="button" routerLink="/org/{{orgUsername}}/project/all-projects/view-details/{{projectId}}/add-employee-project" >
-        <i class="fa-solid fa-plus"></i>
-    </button>
+<div class="header-container">
+  <button class="arr-btn btn btn-primary" type="button" routerLink="/org/{{orgUsername}}/project/all-projects">
+      <i class="fa-solid fa-arrow-left"></i>
+  </button>
+
+  <h3 class="project-title" [style.paddingRight]="project?.projectStatus=='active'?'':'96px'">{{ project?.projectName }}</h3>
+
+  <button class="plus-btn btn btn-primary" type="button" routerLink="/org/{{orgUsername}}/project/all-projects/view-details/{{projectId}}/add-employee-project" *ngIf="project?.projectStatus=='active'">
+      <i class="fa-solid fa-plus"></i>
+  </button>
 </div>
+
 
 <hr>
 
@@ -35,7 +36,7 @@
               <th scope="col">Fullname</th>
               <th scope="col">Contact</th>
               <th scope="col">Role</th>
-              <th style="text-align: center;">Action</th>
+              <th style="text-align: center;" *ngIf="project?.projectStatus=='active'">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -44,12 +45,15 @@
               <td>{{emp.empFullname}}</td>
               <td>{{emp.empContact}}</td>
               <td>{{emp.empRole}}</td>
-              <td style="text-align:center">
+              <td style="text-align:center" *ngIf="project?.projectStatus=='active'">
                 <a  class="btn btn-outline-danger" style="font-size:20px" (click)="removeEmployee(emp.empId)"><i class="fa-solid fa-trash"></i></a>
             </td>
             </tr>
           </tbody>
     </table>
+    <div style="text-align: center;">
+      <button type="button" class="btn btn-success" *ngIf="project?.projectStatus=='active'" (click)="closeProject(project?.projectId)" >Click here to Close Project</button>
+    </div>
 </div>
 
 

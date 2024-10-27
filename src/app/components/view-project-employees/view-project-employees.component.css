@@ -1,9 +1,26 @@
-.arr-btn{
-    margin-top: 10px;
-    margin-left:40px;
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* This keeps the items on the left and right */
+    width: 100%; /* Make sure the container takes full width */
+    position: relative; /* Needed for centering the title */
 }
 
-.plus-btn{
-    margin-top: 10px;
-    margin-right:40px;
+.project-title {
+    flex-grow: 1; /* This allows the title to take up available space */
+    text-align: center; /* Center align the text */
+    margin: 0; /* Remove default margin */
+}
+
+.arr-btn, .plus-btn {
+    margin-top: 10px; 
+    padding: 5px 20px;
+}
+
+.arr-btn {
+    margin-left: 40px; 
+}
+
+.plus-btn {
+    margin-right: 40px;
 }

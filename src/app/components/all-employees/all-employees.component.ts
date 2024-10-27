@@ -45,7 +45,9 @@ export class AllEmployeesComponent {
     })
   }
   
+
   ngOnDestroy(){
+  
     this._employeeFilterService.setRoleFilter('all')
   }
 }

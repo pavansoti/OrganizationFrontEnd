@@ -1,1 +1,75 @@
-<h1 style="padding: 5cm;background-color: white;">HOME</h1>
+
+<div style="margin-top: 2.5cm;">
+    <div class="my-css my-bg">
+        <h5 >Employees</h5>
+        <div class="dashboard-container">
+            <div class="card my-shadow p-4">
+                <div class="dashboard-item">
+                <div class="circle">
+                    <span>{{totalOrgEmployees}}</span>
+                </div>
+                <h4>Total employees</h4>
+                </div>
+            </div>
+            <div class="card my-shadow p-4">
+                <div class="dashboard-item">
+                    <div class="circle">
+                    <span>{{developers}}</span>
+                    </div>
+                    <h4>Developers</h4>
+                </div>
+            </div>
+            <div class="card my-shadow p-4">
+                <div class="dashboard-item">
+                    <div class="circle">
+                    <span>{{testers}}</span>
+                    </div>
+                    <h4>Testers</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="my-css my-bg">
+        <h5>Projects</h5>
+        <div class="dashboard-container">
+            <div class="card my-shadow p-4">
+                <div class="dashboard-item">
+                <div class="circle">
+                    <span>{{totalProjects}}</span>
+                </div>
+                <h4>Total projects</h4>
+                </div>
+            </div>
+            <div class="card my-shadow p-4">
+                <div class="dashboard-item">
+                    <div class="circle">
+                    <span>{{pendingProjects}}</span>
+                    </div>
+                    <h4>Pending projects</h4>
+                </div>
+            </div>
+            <div class="card my-shadow p-4">
+                <div class="dashboard-item">
+                    <div class="circle">
+                    <span>{{completedProjects}}</span>
+                    </div>
+                    <h4>Completed projects</h4>
+                </div>
+            </div>
+            <div class="card p-4 my-shadow">
+                <div class="dashboard-item">
+                    <div 
+                        class="circle progress" 
+                        [ngStyle]="{'--progress': progressPercentage}">
+                        <span>{{progressPercentage}}%</span>
+                    </div>
+                    <h4>Total Projects: {{totalProjects}}</h4>
+                    <h4>Completed Projects: {{completedProjects}}</h4>
+                </div>
+            </div>
+        </div>
+    </div>  
+</div>
+   
+
+

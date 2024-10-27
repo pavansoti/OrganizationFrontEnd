@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DialogService } from 'src/app/services/dialog.service';
+import { EmployeeService } from 'src/app/services/employee.service';
 import { ProjectService } from 'src/app/services/project.service';
 
 @Component({
@@ -14,7 +16,7 @@ export class ViewProjectEmployeesComponent {
   projectId
   employees
   constructor(private _route:ActivatedRoute,private _router:Router,
-    private _projectService:ProjectService
+    private _projectService:ProjectService, private _dialogService:DialogService
   ){}
 
   ngOnInit(){
@@ -30,6 +32,27 @@ export class ViewProjectEmployeesComponent {
     
   }
 
+  removeEmployee(empId){
+    this._projectService.removeEmployeeFromProject(this.projectId,empId).subscribe(res=>{
+      if(res){
+        this._dialogService.showSuccess('Success','Employee removed from project')
+        this.ngOnInit()
+      }else{
+        this._dialogService.showFailed('Failed','Try again')
+        this.ngOnInit()
+      }
+    })
+  }
 
+  closeProject(projectId){
+    this._projectService.closeProject(projectId).subscribe(res=>{
+      if(res){
+        this._dialogService.showSuccess('Success','Project closed')
+        this.ngOnInit();
+      }else{
+        this._dialogService.showFailed('Error','Failed to colse project')
+      }
+    })
+  }
 
 }

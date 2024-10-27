@@ -38,6 +38,20 @@ export class ProjectService {
     return this._http.post(`${this._baseUrl}add-emp-to-project/${projectId}`,selectedEmployeeIds,{responseType:'text'})
   }
 
+  //all-project-comp
+  getProjectByOrgUsernameAndStatus(username,status):Observable<any>{
+    return this._http.get(`${this._baseUrl}get-projects-by/${username}/${status}`)
+  }
+
+   //view-project-com
+   removeEmployeeFromProject(projectId,empId):Observable<any>{
+    return this._http.delete(`${this._baseUrl}remove-emp-project/${projectId}/${empId}`,{responseType:'text'})
+  }
+
+  //view-project-com
+  closeProject(projectId):Observable<any>{
+    return this._http.delete(`${this._baseUrl}close-project/${projectId}`,{responseType:'text'})
+  }
 
 }
 

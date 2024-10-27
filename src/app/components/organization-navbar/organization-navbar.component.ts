@@ -4,6 +4,7 @@ import { DialogService } from 'src/app/services/dialog.service';
 import { EmployeeFilterService } from 'src/app/services/employee-filter.service';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { OrganizationService } from 'src/app/services/organization.service';
+import { ProjectFilterService } from 'src/app/services/project-filter.service';
 
 @Component({
   selector: 'app-organization-navbar',
@@ -19,7 +20,7 @@ export class OrganizationNavbarComponent{
   role=""
   constructor(private _route:ActivatedRoute,private _router:Router,
     private _organizationService:OrganizationService,private _employeeFilterService:EmployeeFilterService,
-    private _dialogService:DialogService
+    private _dialogService:DialogService,private _projectFilterService:ProjectFilterService
   ){ }
 
   img:string
@@ -61,7 +62,11 @@ export class OrganizationNavbarComponent{
 
   onEmployeeFilter(role:string){
     this._employeeFilterService.setRoleFilter(role)
-    alert(role+" nav")
     this._router.navigateByUrl(`org/${this.orgUsername}/employee/all-employees`)
+  }
+
+  onStatusFilter(status:string){
+    this._projectFilterService.setStatusFilter(status)
+    this._router.navigateByUrl(`org/${this.orgUsername}/project/all-projects`)
   }
 }

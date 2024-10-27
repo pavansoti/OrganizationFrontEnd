@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ProjectFilterService } from 'src/app/services/project-filter.service';
 import { ProjectService } from 'src/app/services/project.service';
 
 @Component({
@@ -10,14 +11,28 @@ export class AllProjectsComponent {
 
   projects
 
-  constructor(private _projectService:ProjectService){}
+  constructor(private _projectService:ProjectService,private _projectFilterService:ProjectFilterService){}
 
   ngOnInit(){
-    this._projectService.getAllProjects(localStorage.getItem('token')).subscribe(res=>{
-      this.projects=res
-      console.log(res);
+
+    let orgUsername=localStorage.getItem('token')
+    this._projectFilterService.statusFilter.subscribe(status=>{
+      console.log(status);
       
+      if(status=='active'||status=='inactive'){
+        this._projectService.getProjectByOrgUsernameAndStatus(orgUsername,status).subscribe(res=>{
+          this.projects=res
+        })
+      }else{
+        this._projectService.getAllProjects(orgUsername).subscribe(res=>{
+          this.projects=res
+        })
+      }
     })
+  }
+
+  ngOnDestroy(){
+    this._projectFilterService.setStatusFilter('all')
   }
 
 }
