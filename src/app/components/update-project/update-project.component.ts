@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DialogService } from 'src/app/services/dialog.service';
 import { ProjectService } from 'src/app/services/project.service';
@@ -14,10 +14,10 @@ export class UpdateProjectComponent {
   orgUsername:string;
 
   projectForm=this._fb.group({
-    "projectName":["projectName"],
-    "projectStartDate":['2024-11-01'],
-    "projectEndDate":['2024-11-11'],
-    "projectDescription":["projectDescription"]
+    "projectName":['',[]],
+    "projectStartDate":['',[]],
+    "projectEndDate":['',[Validators.required]],
+    "projectDescription":['',[Validators.required, Validators.maxLength(255)]]
   });
 
   projectId
@@ -40,24 +40,38 @@ export class UpdateProjectComponent {
         })
       })
     })
+    this.projectForm.get('projectName').disable()
+    this.projectForm.get('projectStartDate').disable()
     
   }
 
   updateProject() {
-    let updateProject={
-      "projectName":this.projectForm.get('projectName').value,
-      "projectStartDate":this.projectForm.get('projectStartDate').value,
-      "projectEndDate":this.projectForm.get('projectEndDate').value,
-      "projectDescription":this.projectForm.get('projectDescription').value,
-      "projectId":this.projectId
-    }
-    this._projectService.updateProject(updateProject).subscribe(res=>{
-      if(res){
-        this._dialogService.showSuccess('Success','Project updated successfully')
-        this._router.navigateByUrl(`/org/${this.orgUsername}/project/all-projects`)
-      }else{
-        this._dialogService.showFailed('Error','Failed to update!!!')
+      if(this.projectForm.valid){
+      let updateProject={
+        "projectName":this.projectForm.get('projectName').value,
+        "projectStartDate":this.projectForm.get('projectStartDate').value,
+        "projectEndDate":this.projectForm.get('projectEndDate').value,
+        "projectDescription":this.projectForm.get('projectDescription').value,
+        "projectId":this.projectId
       }
-    })
+      this._projectService.updateProject(updateProject).subscribe(res=>{
+        if(res){
+          this._dialogService.showSuccess('Success','Project updated successfully')
+          this._router.navigateByUrl(`/org/${this.orgUsername}/project/all-projects`)
+        }else{
+          this._dialogService.showFailed('Error','Failed to update!!!')
+        }
+      })
+    }else{
+      this._dialogService.showFailed('Failed','Invalid form!!!')
+    }
+  }
+
+  get projectEndDate(){
+    return this.projectForm.get('projectEndDate')
+  }
+
+  get projectDescription(){
+    return this.projectForm.get('projectDescription')
   }
 }

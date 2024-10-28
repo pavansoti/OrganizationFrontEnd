@@ -30,7 +30,7 @@ const routes: Routes = [
   {path:'org/:username',component:OrganizationNavbarComponent,canActivate: [authGuard],
     children: [
       { path: '', redirectTo:'home', pathMatch:'full'},
-      { path: 'home', component: OrganizationHomeComponent ,  },
+      { path: 'home', component: OrganizationHomeComponent },
       { path: 'employee',redirectTo:'employee/all-employees'},
       { path: 'employee/add-employee', component: AddEmployeeComponent},
       { path: 'employee/all-employees', component: AllEmployeesComponent },
@@ -38,10 +38,10 @@ const routes: Routes = [
       { path: 'project',redirectTo:'project/all-projects'},
       { path: 'project/add-project', component: AddProjectComponent,},
       { path: 'project/all-projects', component: AllProjectsComponent},
-      { path: 'project/all-projects/view-details/:projectId', component: ViewProjectEmployeesComponent,},
-      { path: 'project/all-projects/update-project/:projectId', component: UpdateProjectComponent,},
+      { path: 'project/all-projects/view-details/:projectId', component: ViewProjectEmployeesComponent},
+      { path: 'project/all-projects/update-project/:projectId', component: UpdateProjectComponent},
       { path: 'project/all-projects/view-details/:projectId/add-employee-project',component:AddEmployeeToProjectComponent},
-      { path: 'setting', component: OrganizationSettingsComponent,  },
+      { path: 'setting', component: OrganizationSettingsComponent },
       { path: 'event', component: OrganizationEventsComponent, },
     ]
   },

@@ -27,7 +27,7 @@ export class AddEmployeeToProjectComponent {
       this.projectId=params.get('projectId')
       this.orgUsername=localStorage.getItem('token')
       this._employeeService.getBenchEmps(this.orgUsername,this.projectId).subscribe(res=>{
-        this.benchEmps=res
+        this.benchEmps=res.filter(emp=>emp.empStatus)
       })
     })
   }

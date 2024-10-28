@@ -21,14 +21,25 @@
                 </div>
                 <div class="mb-3">
                   <label for="projectEndDate" class="form-label">Project end date</label>
-                  <input type="date" class="form-control" id="projectEndDate" formControlName="projectEndDate">
+                  <input type="date" class="form-control" id="projectEndDate" 
+                  [class.is-invalid]="projectEndDate?.touched && projectEndDate?.invalid"
+                  formControlName="projectEndDate">
+                  <div *ngIf="projectEndDate?.invalid && projectEndDate?.touched">
+                    <small class="text-danger" *ngIf="projectEndDate?.errors?.required">This field is required</small>
+                </div>
                 </div>
               </div>
               <div class="col-6">
                 <div class="mb-3">
                     <label for="projectDescription" class="form-label">Project description</label>
-                    <textarea class="form-control" id="projectDescription" formControlName="projectDescription" rows="8" style="resize: none;" placeholder="Enter project description"></textarea>
-                </div>
+                    <textarea class="form-control" id="projectDescription"
+                    [class.is-invalid]="projectDescription?.touched && projectDescription?.invalid"
+                    formControlName="projectDescription" rows="8" style="resize: none;" placeholder="Enter project description"></textarea>
+                    <div *ngIf="projectDescription?.invalid && projectDescription?.touched">
+                      <small class="text-danger" *ngIf="projectDescription?.errors?.required">This field is required</small>
+                      <small class="text-danger" *ngIf="projectDescription.hasError('maxlength')">Description cannot exceed 255 characters.</small>
+                    </div>
+                  </div>
                </div>
                 <div class="mb-3" style="text-align: center;">
                     <input type="submit" class="btn btn-primary" value="Submit" style="padding:7px 50px;">

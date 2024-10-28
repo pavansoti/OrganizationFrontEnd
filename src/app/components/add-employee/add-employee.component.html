@@ -1,44 +1,81 @@
 <!-- adding employee -->
 <div class="containerBody" style="padding-top:2cm; background-image: url('assets/images/img2.jpg');">
     <div class="container">
-      <div class="bg">
-          <h3 routerLink="/login">Add employee</h3>
-          <hr>
-          <form class="col row form-group" [formGroup]="employeeForm" (ngSubmit)="add()">
-              <div class="col-6">
-                  <div class="mb-3">
-                      <label for="empFullname" class="form-label">Employee Fullname</label>
-                      <input type="text" class="form-control" id="empFullname" formControlName="empFullname" placeholder="Enter employee fullname" >
-                  </div>
-                  <div class="mb-3">
-                      <label for="empRole" class="form-label">Employee Role</label>
-                      <input type="text" class="form-control" id="empRole" formControlName="empRole" placeholder="Enter employee role">
-                  </div>
-                  <div class="mb-3">
-                      <label for="empContact" class="form-label">Employee contact</label>
-                      <input type="text" class="form-control" id="empContact" formControlName="empContact"   placeholder="Enter employee contact" >
-                  </div>
-              </div>
-              <div class="col-6">
-                  <div class="mb-3">
-                    <label for="empUsername" class="form-label">Employee username</label>
-                    <input type="text" class="form-control" id="empUsername" formControlName="empUsername"   placeholder="Set employee username" >
+        <div class="bg">
+            <h3 routerLink="/login">Add employee</h3>
+            <hr>
+            <form class="col row form-group" [formGroup]="employeeForm" (ngSubmit)="addEmployee()">
+                <div class="col-6">
+                    <div class="mb-3">
+                        <label for="empFullname" class="form-label">Employee Fullname</label>
+                        <input type="text" class="form-control" id="empFullname"
+                        [class.is-invalid]="empFullname?.touched && empFullname?.invalid"
+                        formControlName="empFullname" placeholder="Enter employee fullname" >
+                        <div *ngIf="empFullname?.invalid && empFullname?.touched">
+                            <small class="text-danger" *ngIf="empFullname?.errors?.required">This field is required</small><br *ngIf="empFullname.errors?.required">
+                            <small class="text-danger" *ngIf="empFullname?.errors?.minlength">Organization name must be atleast 4 characters</small><br *ngIf="empFullname.errors?.minlength">
+                            <small class="text-danger" *ngIf="empFullname.errors?.pattern">Invalid name format</small>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="empRole" class="form-label">Employee Role</label>
+                        <input type="text" class="form-control" id="empRole" 
+                        [class.is-invalid]="empRole?.touched && empRole?.invalid"
+                        formControlName="empRole" placeholder="Enter employee role">
+                        <div *ngIf="empRole?.invalid && empRole?.touched">
+                            <small class="text-danger" *ngIf="empRole?.errors?.required">This field is required</small>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="empContact" class="form-label">Employee contact</label>
+                        <input type="text" class="form-control" id="empContact" 
+                        [class.is-invalid]="empContact?.touched && empContact?.invalid"
+                        formControlName="empContact"   placeholder="Enter employee contact" >
+                        <div *ngIf="empContact.invalid&&(empContact.dirty||empContact.touched)">
+                            <small class="text-danger" *ngIf="empContact.errors?.required">This field is required</small>
+                            <small class="text-danger" *ngIf="empContact.errors?.pattern">Please enter valid mobile number</small>
+                        </div>
+                    </div>
                 </div>
-                  <div class="mb-3">
-                      <label for="empPassword" class="form-label">Employee password</label>
-                      <input type="password" class="form-control" id="empPassword" formControlName="empPassword" placeholder="Set password">
-                  </div>
-                  <div class="mb-3">
-                      <label for="empDoj" class="form-label">Employee Date of Joining</label>
-                      <input type="date" class="form-control" id="empDoj" formControlName="empDoj">
-                  </div>
+                <div class="col-6">
+                    <div class="mb-3">
+                        <label for="empUsername" class="form-label">Employee username</label>
+                        <input type="text" class="form-control" id="empUsername" 
+                        [class.is-invalid]="empUsername?.touched && empUsername?.invalid"
+                        formControlName="empUsername"   placeholder="Set employee username" >
+                        <div *ngIf="empUsername?.invalid && empUsername?.touched">
+                            <small class="text-danger" *ngIf="empUsername?.errors?.required">This field is required</small><br *ngIf="empUsername.errors?.required">
+                            <small class="text-danger" *ngIf="empUsername?.errors?.minlength">Username must be atleast 4 characters</small><br *ngIf="empUsername.errors?.minlength">
+                            <small class="text-danger" *ngIf="usernameCheckStart || isUsernameValid ">Username must start with a letter and contain only letters, numbers, or &#64;._- characters.</small><br *ngIf="usernameCheckStart|| isUsernameValid ">
+                            <small class="text-danger" *ngIf="usernameCheckSpace">Username must not contain spaces</small>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="empPassword" class="form-label">Employee password</label>
+                        <input type="password" class="form-control" id="empPassword" 
+                        [class.is-invalid]="empPassword?.touched && empPassword?.invalid"
+                        formControlName="empPassword" placeholder="Set password">
+                        <div *ngIf="empPassword.touched">
+                            <small class="text-danger" *ngIf="empPassword.errors?.required">This field is required</small>
+                            <small class="text-danger" *ngIf="empPassword.errors?.minlength">Password must be atlest 6 characters</small>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="empDoj" class="form-label">Employee Date of Joining</label>
+                        <input type="date" class="form-control" id="empDoj" 
+                        [class.is-invalid]="empDoj?.touched && empDoj?.invalid"
+                        formControlName="empDoj">
+                        <div *ngIf="empDoj?.invalid && empDoj?.touched">
+                            <small class="text-danger" *ngIf="empDoj?.errors?.required">This field is required</small>
+                        </div>
+                    </div>
                 </div>
-                  <div class="mb-3" style="text-align: center;">
-                      <input type="submit" class="btn btn-primary" value="Submit" style="padding:7px 50px;">
-                  </div>
-              
-          </form>
-      </div>
+                <div class="mb-3" style="text-align: center;">
+                    <input type="submit" class="btn btn-primary" value="Submit" style="padding:7px 50px;">
+                </div>
+                
+            </form>
+        </div>
     </div>
   </div>
 

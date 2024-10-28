@@ -21,8 +21,6 @@ export class OrganizationService {
 
   //register-comp
   addOrganization(formData:any):Observable<any>{
-    console.log(formData,"formData");
-    
     return this._http.post(`${this._baseUrl}add`,formData, { responseType: 'text' })
   }
 

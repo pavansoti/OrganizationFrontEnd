@@ -8,35 +8,58 @@
               <div class="col-6">
                         <div class="mb-3">
                             <label for="empId" class="form-label">Employee id</label>
-                            <input type="text" class="form-control" id="empId" value="{{empId}}" disabled>
+                            <input type="text" class="form-control" id="empId" value="{{empId}}" title="Id cannot updated" disabled>
                         </div>
                     <div class="mb-3">
                         <label for="empFullname" class="form-label">Employee Fullname</label>
-                        <input type="text" class="form-control" id="empFullname" formControlName="empFullname" placeholder="Enter employee fullname" >
+                        <input type="text" class="form-control" id="empFullname" 
+                        [class.is-invalid]="empFullname?.touched && empFullname?.invalid"
+                        formControlName="empFullname" placeholder="Enter employee fullname" >
+                        <div *ngIf="empFullname?.invalid && empFullname?.touched">
+                            <small class="text-danger" *ngIf="empFullname?.errors?.required">This field is required</small><br *ngIf="empFullname.errors?.required">
+                            <small class="text-danger" *ngIf="empFullname?.errors?.minlength">Organization name must be atleast 4 characters</small><br *ngIf="empFullname.errors?.minlength">
+                            <small class="text-danger" *ngIf="empFullname.errors?.pattern">Invalid name format</small>
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label for="empRole" class="form-label">Employee Role</label>
-                        <input type="text" class="form-control" id="empRole" formControlName="empRole" placeholder="Enter employee role">
+                        <input type="text" class="form-control" id="empRole" 
+                        [class.is-invalid]="empRole?.touched && empRole?.invalid"
+                        formControlName="empRole" placeholder="Enter employee role">
+                        <div *ngIf="empRole.touched">
+                            <small class="text-danger" *ngIf="empRole.errors?.required">This field is required</small>
+                        </div>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="mb-3">
                         <label for="empUsername" class="form-label">Employee username</label>
-                        <input type="text" class="form-control" id="empUsername" formControlName="empUsername"   placeholder="Set employee username" >
+                        <input type="text" class="form-control" id="empUsername" formControlName="empUsername" title="Username cannot updated" >
                     </div>
                     <div class="mb-3">
                         <label for="empPassword" class="form-label">Employee password</label>
-                        <input type="password" class="form-control" id="empPassword" formControlName="empPassword" placeholder="Set password">
+                        <input type="password" class="form-control" id="empPassword" 
+                        [class.is-invalid]="empPassword?.touched && empPassword?.invalid"
+                        formControlName="empPassword" placeholder="Set password">
+                        <div *ngIf="empPassword.touched">
+                            <small class="text-danger" *ngIf="empPassword.errors?.required">This field is required</small>
+                            <small class="text-danger" *ngIf="empPassword.errors?.minlength">Password must be atlest 6 characters</small>
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label for="empContact" class="form-label">Employee contact</label>
-                        <input type="text" class="form-control" id="empContact" formControlName="empContact"   placeholder="Enter employee contact" >
+                        <input type="text" class="form-control" id="empContact" 
+                        [class.is-invalid]="empContact?.touched && empContact?.invalid"
+                        formControlName="empContact"   placeholder="Enter employee contact" >
+                        <div *ngIf="empContact.invalid&&(empContact.dirty||empContact.touched)">
+                            <small class="text-danger" *ngIf="empContact.errors?.required">This field is required</small>
+                            <small class="text-danger" *ngIf="empContact.errors?.pattern">Please enter valid mobile number</small>
+                        </div>
                     </div>
                 </div>
-                  <div class="mb-3" style="text-align: center;">
-                      <input type="submit" class="btn btn-primary" value="Submit" style="padding:7px 50px;">
-                  </div>
-              
+                <div class="mb-3" style="text-align: center;">
+                    <input type="submit" class="btn btn-primary" value="Submit" style="padding:7px 50px;">
+                </div>
           </form>
       </div>
     </div>

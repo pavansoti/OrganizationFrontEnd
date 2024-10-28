@@ -11,7 +11,7 @@ import { OrganizationService } from 'src/app/services/organization.service';
 export class OrganizationLoginComponent {
 
   org={
-    orgUsername:"cyepro",
+    orgUsername:"deva",
     orgPassword:"pass"
   }
 
@@ -24,14 +24,13 @@ export class OrganizationLoginComponent {
   }
 
 
-  login(org:any){
-    console.log(org.value);
+  login(login:any){
+    console.log(login.value);
     
-    this._organizationService.login(org.value).subscribe((res)=>{
+    this._organizationService.login(login.value).subscribe((res)=>{
       if(res){
         localStorage.setItem('token',res.orgUsername)
         this._dialogService.showSuccess('Success','logged in as '+res.orgUsername)
-
         this._router.navigateByUrl('org/'+res.orgUsername)
       }else{
         this._dialogService.showFailed('Failed','username or password not matched!!!')

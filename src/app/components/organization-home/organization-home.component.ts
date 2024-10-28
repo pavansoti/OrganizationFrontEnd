@@ -32,10 +32,9 @@ export class OrganizationHomeComponent {
         this.developers=res.developers
         this.testers=res.testers
         if (this.totalProjects > 0) {
-          this.progressPercentage = (this.completedProjects / this.totalProjects) * 100;
+          this.progressPercentage = Math.round((this.completedProjects / this.totalProjects) * 100)
         }
       }
     })
   }
-
 }

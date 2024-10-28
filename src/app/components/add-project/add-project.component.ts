@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { DialogService } from 'src/app/services/dialog.service';
@@ -14,10 +14,11 @@ import { ProjectService } from 'src/app/services/project.service';
 export class AddProjectComponent {
 
   projectForm=this._fb.group({
-    "projectName":["projectName"],
-    "projectStartDate":['2024-11-01'],
-    "projectEndDate":['2024-11-11'],
-    "projectDescription":["projectDescription"]
+    "projectName":[,[Validators.pattern(/^[a-zA-Z-' ]+$/),
+      Validators.minLength(4),Validators.required]],
+    "projectStartDate":['',[Validators.required]],
+    "projectEndDate":['',[Validators.required]],
+    "projectDescription":['',[Validators.required, Validators.maxLength(255)]]
   });
 
   constructor(private _fb:FormBuilder, private _projectService:ProjectService,
@@ -50,8 +51,25 @@ export class AddProjectComponent {
         })
       })
     }else{
-
+      this.projectForm.markAllAsTouched();
+      this._dialogService.showFailed('Failed','Invalid form!!!')
     }
+  }
+
+  get projectName(){
+    return this.projectForm.get('projectName')
+  }
+
+  get projectStartDate(){
+    return this.projectForm.get('projectStartDate')
+  }
+
+  get projectEndDate(){
+    return this.projectForm.get('projectEndDate')
+  }
+
+  get projectDescription(){
+    return this.projectForm.get('projectDescription')
   }
 
 }

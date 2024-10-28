@@ -37,7 +37,7 @@
 
 <!-- employee nav -->
 <nav class="nav my-margin" *ngIf="feature=='employee'">
-  <a class="child-nav nav-link"  routerLink="employee/add-employee">Add employee</a>
+  <a class="child-nav nav-link"  routerLink="/org/{{orgUsername}}/employee/add-employee">Add employee</a>
   <a class="child-nav nav-link" (click)="onEmployeeFilter('all')" routerLink="employee/all-employees">All employees</a>
   <a class="child-nav nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Filter
