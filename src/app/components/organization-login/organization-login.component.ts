@@ -24,10 +24,9 @@ export class OrganizationLoginComponent {
   }
 
 
-  login(login:any){
-    console.log(login.value);
-    
-    this._organizationService.login(login.value).subscribe((res)=>{
+  login(login:any){    
+    this._organizationService.login(login.value).subscribe({
+      next:(res)=>{
       if(res){
         localStorage.setItem('token',res.orgUsername)
         this._dialogService.showSuccess('Success','logged in as '+res.orgUsername)
@@ -35,7 +34,9 @@ export class OrganizationLoginComponent {
       }else{
         this._dialogService.showFailed('Failed','username or password not matched!!!')
       }
+    },error:(err)=>{
+      this._dialogService.showInfo('Note',err.message)
+      }
     })
-    
   }
 }

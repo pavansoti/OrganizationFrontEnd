@@ -20,11 +20,11 @@
         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
           <li class="nav-item">
             <hr style="margin: 0px;margin-bottom: 10px;height: 10px;">
-            <a class="myadjust my-hover nav-link active" aria-current="page" (click)="selectFeature('home')" routerLink='home'>Home</a>
-            <a class="myadjust my-hover nav-link active" aria-current="page" (click)="selectFeature('employee')" routerLink="employee">Employee</a>
-            <a class="myadjust my-hover nav-link active" aria-current="page" (click)="selectFeature('project')" routerLink="project">Projects</a>
-            <a class="myadjust my-hover nav-link active " aria-current="page" (click)="selectFeature('setting')" routerLink="setting" >Settings</a>
-            <a class="myadjust my-hover nav-link active " aria-current="page" (click)="selectFeature('event')" routerLink="event" >Events</a>
+            <a class="myadjust my-hover nav-link active" aria-current="page" (click)="selectFeature('home')" [style.fontWeight]="feature=='home'?'600':''" routerLink='home'>Home</a>
+            <a class="myadjust my-hover nav-link active" aria-current="page" (click)="selectFeature('employee')" [style.fontWeight]="feature=='employee'?'600':''" routerLink="employee">Employee</a>
+            <a class="myadjust my-hover nav-link active" aria-current="page" (click)="selectFeature('project')" [style.fontWeight]="feature=='project'?'600':''" routerLink="project">Projects</a>
+            <a class="myadjust my-hover nav-link active " aria-current="page" (click)="selectFeature('setting')" [style.fontWeight]="feature=='setting'?'600':''" routerLink="setting" >Settings</a>
+            <a class="myadjust my-hover nav-link active " aria-current="page" (click)="selectFeature('event')" [style.fontWeight]="feature=='event'?'600':''" routerLink="event" >Events</a>
           </li>
           <li class="nav-item mt-auto">
             <a class="myadjust nav-link active logout-hover" aria-current="page" (click)="logout()">Logout</a>
@@ -37,37 +37,40 @@
 
 <!-- employee nav -->
 <nav class="nav my-margin" *ngIf="feature=='employee'">
-  <a class="child-nav nav-link"  routerLink="/org/{{orgUsername}}/employee/add-employee">Add employee</a>
-  <a class="child-nav nav-link" (click)="onEmployeeFilter('all')" routerLink="employee/all-employees">All employees</a>
+  <a class="child-nav nav-link" (click)="removeSearchVal()" routerLink="/org/{{orgUsername}}/employee/add-employee" >Add employee</a>  <!---->
+  <a class="child-nav nav-link" (click)="onEmployeeRoleFilter('all')" routerLink="employee/all-employees">All employees</a>
   <a class="child-nav nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Filter
   </a>
-  <ul class="dropdown-menu dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
-    <li class="child-nav dropdown-item" (click)="onEmployeeFilter('developer')">Developer</li>
-    <li class="child-nav dropdown-item" (click)="onEmployeeFilter('tester')" >Tester</li>
-
+  <ul class="dropdown-menu dropdown-menu" style="cursor: pointer;" aria-labelledby="navbarDarkDropdownMenuLink">
+    <li class="child-nav dropdown-item" (click)="onEmployeeRoleFilter('developer')">Developer</li>
+    <li class="child-nav dropdown-item" (click)="onEmployeeRoleFilter('tester')" >Tester</li>
   </ul>
-  <form class="my-search d-flex ms-auto" role="search">
-    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+  <form class="my-search d-flex ms-auto" role="search" #searchForm="ngForm" (ngSubmit)="search('employee',searchForm)">
+    <input class="form-control me-2" type="search" placeholder="Search" name="val" [(ngModel)]="val"  aria-label="Search">
     <button class="btn btn-outline-success" type="submit">Search</button>
   </form>
 </nav>
 
 <!-- project nav -->
 <nav class="nav my-margin" *ngIf="feature=='project'">
-    <a class="child-nav nav-link" routerLink="project/add-project">Add Project</a>
-    <a class="child-nav nav-link" routerLink="project/all-projects" (click)="onStatusFilter('all')">All projects</a>
+    <a class="child-nav nav-link" routerLink="project/add-project" (click)="removeSearchVal()">Add Project</a>
+    <a class="child-nav nav-link" routerLink="project/all-projects" (click)="onProjectStatusFilter('all')">All projects</a>
     <a class="child-nav nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
       Filter
     </a>
-    <ul class="dropdown-menu dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
-      <li class="child-nav dropdown-item" (click)="onStatusFilter('active')">Pending</li>
-      <li class="child-nav dropdown-item" (click)="onStatusFilter('inactive')">Completed</li>
+    <ul class="dropdown-menu dropdown-menu" style="cursor: pointer;" aria-labelledby="navbarDarkDropdownMenuLink">
+      <li class="child-nav dropdown-item" (click)="onProjectStatusFilter('active')">Pending</li>
+      <li class="child-nav dropdown-item" (click)="onProjectStatusFilter('inactive')">Completed</li>
     </ul>
-    <form class="my-search d-flex ms-auto" role="search">
-      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+    <form class="my-search d-flex ms-auto" role="search" #searchForm="ngForm" (ngSubmit)="search('project',searchForm)">
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"  name="val" [(ngModel)]="val" >
       <button class="btn btn-outline-success" type="submit">Search</button>
     </form>
   </nav>
 <hr>
 <router-outlet></router-outlet>
+
+<div style="margin-bottom: 50px;">
+
+</div>

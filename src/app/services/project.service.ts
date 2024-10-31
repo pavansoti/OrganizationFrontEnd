@@ -53,6 +53,10 @@ export class ProjectService {
     return this._http.delete(`${this._baseUrl}close-project/${projectId}`,{responseType:'text'})
   }
 
+  //all-project-comp
+  searchProject(orgUsername,val):Observable<any>{
+    return this._http.get(`${this._baseUrl}get-projects-search/${orgUsername}/${val}`)
+  }
 }
 
 

@@ -1,17 +1,17 @@
 
 <div>
-      <div style="display: flex;flex-wrap: wrap; justify-content: space-around;margin:20px 30px">
-          <div class="card" style="margin: 10px;width: 18rem;" *ngFor="let project of projects">
-              <div class="card-body">
-                <h5 class="card-title">{{project.projectName}}</h5>
-                <div class="card-text">Status : {{project.projectStatus}}</div>
-                <div class="card-text">Start date :{{project.projectStartDate}}</div>
-                <div class="card-text">End date : {{project.projectEndDate}}</div>
-                <p class="card-text">Description : {{project.projectDescription|description}}</p>
-                
-                <a routerLink="update-project/{{project.projectId}}" class="card-link">update project</a>
-                <a routerLink="view-details/{{project.projectId}}" class="card-link">View more</a>
-              </div>
+    <div style="display: flex;flex-wrap: wrap; justify-content: space-around;margin:20px 30px;">
+        <div class="card" style="margin: 10px;width: 18rem;" *ngFor="let project of projects">
+            <div class="card-body">
+              <h5 class="card-title">{{project.projectName}}</h5>
+              <div class="card-text">Status : {{project.projectStatus}}</div>
+              <div class="card-text">Start date :{{project.projectStartDate}}</div>
+              <div class="card-text">End date : {{project.projectEndDate}}</div>
+              <p class="card-text">Description : {{project.projectDescription|description}}</p>
+              
+              <a routerLink="update-project/{{project.projectId}}" class="card-link">update project</a>
+              <a routerLink="view-details/{{project.projectId}}" class="card-link">View more</a>
             </div>
-      </div>
+          </div>
+    </div>
 </div>

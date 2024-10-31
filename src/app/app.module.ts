@@ -67,7 +67,9 @@ import { AddEmployeeToProjectComponent } from './components/add-employee-to-proj
       timeOut: 3000,  
       progressBar: true,
       easeTime: 300,
-      preventDuplicates: true
+      preventDuplicates: true,
+      positionClass:'toast-top-left'
+      
     }),// ToastrModule added
   
   ],

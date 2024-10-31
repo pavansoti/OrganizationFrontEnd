@@ -5,3 +5,23 @@
     display: flex;
     flex-direction: column;
 } */
+html, body {
+    overflow-y: scroll;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer and Edge */
+  
+    /* Webkit browsers (Chrome, Safari, etc.) */
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  } 
+
+  /* styles.css */
+.toast-top-left {
+  position: fixed !important; /* Ensures it stays fixed on the viewport */
+  top: 20px !important;       /* Distance from the top */
+  right: 20px !important;     /* Distance from the right */
+  z-index: 9999 !important;   /* Keep it on top of other elements */
+  pointer-events: auto !important; /* Allow interactions with the toast */
+}
+

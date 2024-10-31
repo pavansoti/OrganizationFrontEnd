@@ -48,4 +48,11 @@ export class EmployeeService {
     return this._http.get(`${this._baseUrl}get-bench-emps/${orgUsername}/${projectId}`)
   }
 
+  //all-emp-comp
+  searchEmployees(orgUsername,val):Observable<any>{
+    console.log(orgUsername,val);
+    
+    return this._http.get(`${this._baseUrl}get-emps-search/${orgUsername}/${val}`)
+  }
+
 }

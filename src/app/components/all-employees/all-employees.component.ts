@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { combineLatest, switchMap } from 'rxjs';
 import { DialogService } from 'src/app/services/dialog.service';
 import { EmployeeFilterService } from 'src/app/services/employee-filter.service';
 import { EmployeeService } from 'src/app/services/employee.service';
@@ -19,19 +20,24 @@ export class AllEmployeesComponent {
 
   ngOnInit(){
     let orgUsername=localStorage.getItem('token')
-    this._employeeFilterService.roleFilter.subscribe(role=>{
-      if(role=='developer'||role=='tester'){
-        this._employeeService.getEmpByOrgUsernameAndEmpRole(orgUsername,role).subscribe(res=>{
-          this.employees=res;
-       
-        })
-      }
-      else{
-        this._employeeService.getEmpByOrg(orgUsername).subscribe(res=>{
-          this.employees=res;
-        })
-      }
-    })
+     // Use combineLatest to listen to both roleFilter and searchVal streams.
+     combineLatest([
+      this._employeeFilterService.roleFilter,
+      this._employeeFilterService.searchVal
+    ]).pipe(
+      switchMap(([role, searchVal]) => {
+        // Decide the service method based on the role and searchVal
+        if (role === 'developer' || role === 'tester') {
+          return this._employeeService.getEmpByOrgUsernameAndEmpRole(orgUsername, role);
+        } else if (searchVal) {
+          return this._employeeService.searchEmployees(orgUsername, searchVal);
+        } else {
+          return this._employeeService.getEmpByOrg(orgUsername);
+        }
+      })
+    ).subscribe(res => {
+      this.employees = res;
+    });
   }
 
   deleteEmployee(empId){
@@ -44,10 +50,10 @@ export class AllEmployeesComponent {
       }
     })
   }
-  
 
-  ngOnDestroy(){
-  
-    this._employeeFilterService.setRoleFilter('all')
-  }
+  // ngOnDestroy(){
+  //   console.log("111");
+    
+  //   this._employeeFilterService.setSearchVal('')
+  // }
 }

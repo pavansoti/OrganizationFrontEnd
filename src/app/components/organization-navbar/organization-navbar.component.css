@@ -37,12 +37,13 @@ a.child-nav:hover {
 
 li.child-nav:hover {
     color: white;
-    background: linear-gradient(90deg, #510cd0, #1ce3f9);
+    background: linear-gradient(90deg, #1417c7, #c4cbf2);
 }
 
 .wel-css{ 
     font-weight: bold; font-size: larger;
-    background: linear-gradient(90deg, #d0f667, #fab30d);background-clip: text;
+    background: linear-gradient(90deg, #d0f667, #fab30d);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -50,7 +51,11 @@ li.child-nav:hover {
 .user{
     margin-bottom: 0;
     font-weight: bold;
-    background: linear-gradient(90deg, #d0f667, #fab30d);background-clip: text;
+    background: linear-gradient(90deg, #d0f667, #fab30d);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+.x{
+    font-weight: 100;
 }
