@@ -23,7 +23,7 @@ import { AllProjectsComponent } from './components/all-projects/all-projects.com
 import { UpdateProjectComponent } from './components/update-project/update-project.component';
 import { ViewProjectEmployeesComponent } from './components/view-project-employees/view-project-employees.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Toast, ToastrModule } from 'ngx-toastr';
+import { ToastrModule } from 'ngx-toastr';
 import { StatusPipe } from './pipes/status.pipe';
 import { DescriptionPipe } from './pipes/description.pipe';
 import { UpdateEmployeeComponent } from './components/update-employee/update-employee.component';
@@ -71,7 +71,6 @@ import { AddEmployeeToProjectComponent } from './components/add-employee-to-proj
       positionClass:'toast-top-left'
       
     }),// ToastrModule added
-  
   ],
   providers: [],
   bootstrap: [AppComponent]

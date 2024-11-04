@@ -2,3 +2,30 @@
     margin-top: 10px;
     margin-left:40px;
 }
+
+.custom-checkbox {
+    appearance: none; /* Remove default styling */
+    width: 20px; /* Set size */
+    height: 20px; /* Set size */
+    border: 2px solid #007BFF; /* Border color and width */
+    border-radius: 4px; /* Optional: Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    outline: none; /* Remove outline */
+    position: relative; /* Positioning for the checkmark */
+}
+
+.custom-checkbox:checked {
+    background-color: #007BFF; /* Background color when checked */
+    border-color: #0056b3; /* Darker border when checked */
+}
+
+.custom-checkbox:checked::after {
+    content: ""; /* Create a checkmark */
+    left: 4px; /* Adjust for center positioning */
+    top: 0px; /* Adjust for vertical alignment */
+    width: 4px; /* Width of the checkmark */
+    height: 10px; /* Height of the checkmark */
+    border: solid white; /* Checkmark color */
+    border-width: 0 2px 2px 0; /* Create checkmark shape */
+    transform: rotate(45deg); /* Rotate to form a checkmark */
+}

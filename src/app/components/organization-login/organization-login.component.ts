@@ -11,8 +11,8 @@ import { OrganizationService } from 'src/app/services/organization.service';
 export class OrganizationLoginComponent {
 
   org={
-    orgUsername:"deva",
-    orgPassword:"pass"
+    orgUsername:"",
+    orgPassword:""
   }
 
   constructor(private _router:Router, private _organizationService:OrganizationService,

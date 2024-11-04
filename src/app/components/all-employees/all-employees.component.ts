@@ -27,12 +27,12 @@ export class AllEmployeesComponent {
     ]).pipe(
       switchMap(([role, searchVal]) => {
         // Decide the service method based on the role and searchVal
-        if (role === 'developer' || role === 'tester') {
-          return this._employeeService.getEmpByOrgUsernameAndEmpRole(orgUsername, role);
-        } else if (searchVal) {
+        if (searchVal) {
           return this._employeeService.searchEmployees(orgUsername, searchVal);
-        } else {
+        } else if (role=='all') {
           return this._employeeService.getEmpByOrg(orgUsername);
+        } else {
+          return this._employeeService.getEmpByOrgUsernameAndEmpRole(orgUsername, role);
         }
       })
     ).subscribe(res => {

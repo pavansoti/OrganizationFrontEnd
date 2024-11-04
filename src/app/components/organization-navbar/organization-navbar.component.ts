@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DialogService } from 'src/app/services/dialog.service';
 import { EmployeeFilterService } from 'src/app/services/employee-filter.service';
+import { EmployeeService } from 'src/app/services/employee.service';
 import { OrganizationService } from 'src/app/services/organization.service';
 import { ProjectFilterService } from 'src/app/services/project-filter.service';
 
@@ -19,18 +20,23 @@ export class OrganizationNavbarComponent{
   feature='home'
   role=""
   val=""
+  roles:any
   constructor(private _route:ActivatedRoute,private _router:Router,
     private _organizationService:OrganizationService,private _employeeFilterService:EmployeeFilterService,
     private _dialogService:DialogService,private _projectFilterService:ProjectFilterService,
+    private _employeeService:EmployeeService
   ){ }
 
   img:string
   ngOnInit(){
+    this._employeeService.getRoles().subscribe(res=>{
+      this.roles=res     
+    })
     this.getPathOf2Index()
     this._organizationService.getOrganization(this.orgUsername).subscribe(res=>{
       if(res){
         this.org=res
-        this.img='data:'+this.org.orgImagePath+';base64,'+this.org.orgImage
+        this.img='data:'+this.org.orgImageType+';base64,'+this.org.orgImage
       }else{
         this._router.navigateByUrl('/user-not-found')
       }
@@ -90,6 +96,8 @@ export class OrganizationNavbarComponent{
   removeSearchVal(){
     this.val=''
     this.role=''
+    this._employeeFilterService.setRoleFilter('all')
+    this._projectFilterService.setStatusFilter('all')
   }
 
   getPathOf2Index(){

@@ -8,7 +8,7 @@ import { DialogService } from './dialog.service';
 })
 export class InactivityService {
 
-  private inactivityTimeout = 10000; // 10 sec in milliseconds
+  private inactivityTimeout = 600000; // 10 sec in milliseconds
   private inactivityEvents$ = merge(
     fromEvent(document, 'mousemove'),
     fromEvent(document, 'mousedown'),

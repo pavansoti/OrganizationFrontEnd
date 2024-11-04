@@ -25,12 +25,18 @@ export class OrganizationHomeComponent {
     const orgUsername=localStorage.getItem('token')
     this._organizationService.getOrgDashboardData(orgUsername).subscribe(res=>{
       if(res){
-        this.totalProjects=res.totalProjects
-        this.completedProjects=res.completedProjects
-        this.pendingProjects=res.pendingProjects
-        this.totalOrgEmployees=res.totalOrgEmployees
-        this.developers=res.developers
-        this.testers=res.testers
+        if(res.totalProjects)
+          this.totalProjects=res.totalProjects
+        if(res.completedProjects)
+          this.completedProjects=res.completedProjects
+        if(res.pendingProjects)
+          this.pendingProjects=res.pendingProjects
+        if(res.totalOrgEmployees)
+          this.totalOrgEmployees=res.totalOrgEmployees
+        if(res.developers)
+          this.developers=res.developers
+        if(res.testers)
+          this.testers=res.testers
         if (this.totalProjects > 0) {
           this.progressPercentage = Math.round((this.completedProjects / this.totalProjects) * 100)
         }

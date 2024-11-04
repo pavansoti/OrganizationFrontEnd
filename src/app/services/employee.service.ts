@@ -8,7 +8,7 @@ import { PortService } from './port.service';
 })
 export class EmployeeService {
 
-  private _baseUrl=`http://localhost:${this._portService.port}/employee/`
+  private _baseUrl=`http://localhost:${this._portService.port}/api/employee/`
 
 
   constructor(private _http:HttpClient,private _portService:PortService) { }
@@ -49,10 +49,13 @@ export class EmployeeService {
   }
 
   //all-emp-comp
-  searchEmployees(orgUsername,val):Observable<any>{
-    console.log(orgUsername,val);
-    
+  searchEmployees(orgUsername,val):Observable<any>{  
     return this._http.get(`${this._baseUrl}get-emps-search/${orgUsername}/${val}`)
+  }
+
+  //org-nav-comp
+  getRoles(){
+    return this._http.get(`${this._baseUrl}get-roles`)
   }
 
 }
